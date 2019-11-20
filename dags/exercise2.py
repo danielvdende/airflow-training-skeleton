@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# coding: utf-8
 import airflow
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
@@ -10,7 +12,6 @@ dag = DAG(
     dag_id="exercise2",
     default_args=args,
     description="Sample DAG showing some Airflow Operators.",
-    schedule_interval="@once"
 )
 
 
@@ -28,7 +29,7 @@ print_date = PythonOperator(
 end = DummyOperator(task_id="the_end", dag=dag)
 
 wait_tasks = [
-    BashOperator(task_id=f"wait_{w}", bash_command=f"sleep {w}", dag=dag)
+    BashOperator(task_id="wait_{w}".format(w=w), bash_command="sleep {w}".format(w=w), dag=dag)
     for w in [1, 5, 10]
 ]
 
