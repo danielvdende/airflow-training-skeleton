@@ -61,6 +61,8 @@ compute_aggregates = DataProcPySparkOperator(
         "gs://{bucket}/airflow-training-data/land_registry_price_paid_uk/*/*.json".format(bucket=bucket_name),
         ("gs://{bucket}/airflow-training-data/currency/{{{{ ds }}}}-" + currency + ".json").format(bucket=bucket_name),
         "gs://{bucket}/airflow-training-data/results/{{{{ ds }}}}/".format(bucket=bucket_name),
+        currency,
+        "{{ ds }}"
     ],
     dag=dag,
 )
