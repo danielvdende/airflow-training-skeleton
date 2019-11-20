@@ -55,7 +55,7 @@ dataproc_create_cluster = DataprocClusterCreateOperator(
 
 compute_aggregates = DataProcPySparkOperator(
     task_id="compute_aggregates",
-    main="gs://{bucket}/build_statistics.py".format(bucket=bucket_name),
+    main="gs://{bucket}/code/build_statistics.py".format(bucket=bucket_name),
     cluster_name="analyse-pricing-{{ ds }}",
     arguments=[
         "gs://{bucket}/airflow-training-data/land_registry_price_paid_uk/*/*.json".format(bucket=bucket_name),
