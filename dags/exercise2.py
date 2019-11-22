@@ -6,12 +6,16 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 
-args = {"owner": "godatadriven", "start_date": airflow.utils.dates.days_ago(14)}
+import datetime
+
+args = {"owner": "godatadriven", "start_date": datetime.datetime(2019, 10, 17)}
 
 dag = DAG(
     dag_id="exercise2",
     default_args=args,
+    schedule_interval="@daily",
     description="Sample DAG showing some Airflow Operators.",
+    catchup=True
 )
 
 
